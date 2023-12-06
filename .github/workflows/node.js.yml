@@ -29,3 +29,10 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    steps: uses: department-of-veterans-affairs/lighthouse-tornado-secrel-pipeline/.github/workflows/pipeline.yml@PIPELINE_VERSION
+    with:
+      requires-prod-signing-keys: true
+      config-file: .github/secrel/config.yml
+      images: |-
+        ghcr.io/${{ github.repository }}/app:latest
+    secrets: inherit
